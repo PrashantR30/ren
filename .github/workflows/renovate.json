@@ -63,8 +63,7 @@
     "endoflife-date": {
       "defaultRegistryUrlTemplate": "https://endoflife.date/api/alpine.json",
       "format": "json",
-      "versionField": "latest",
-      "filterResults": true
+      "jsonPath": "$[*].latest"
     }
   }
 }
