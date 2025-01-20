@@ -56,11 +56,11 @@
     }
   ],
   "customDatasources": {
-    "kubernetes": {
+    "custom.kubernetes": {
       "defaultRegistryUrlTemplate": "https://cdn.dl.k8s.io/release/stable.txt",
       "format": "plain"
     },
-    "alpine": {
+    "custom.alpine": {
       "defaultRegistryUrlTemplate": "https://endoflife.date/api/alpine.json",
       "format": "json",
       "jsonPath": "$[*].latest"
