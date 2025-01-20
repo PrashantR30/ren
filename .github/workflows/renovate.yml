@@ -1,7 +1,7 @@
 name: Renovate
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Runs every 10mins
+    - cron: '0 */2 * * *'  # Runs every 2Hrs
   workflow_dispatch:
   push:
     branches:
