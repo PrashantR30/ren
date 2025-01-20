@@ -35,18 +35,17 @@
         "^embedded-bins/Makefile\\.variables$"
       ],
       "matchStrings": [
-        "alpine_version\\s*=\\s*(?<currentValue>\\S+)"
+         "kubernetes_version\\s*=\\s*(?<currentValue>\\S+)"
       ],
-      "depNameTemplate": "alpine",
-      "versioningTemplate": "semver",
-      "datasourceTemplate": "endoflife-date",
-      "packageNameTemplate": "alpine"
+      "depNameTemplate": "kubernetes",
+      "versioningTemplate": "semver-coerced",
+      "datasourceTemplate": "custom.kubernetes"
     }
   ],
   "customDatasources": {
-    "endoflife-date": {
-      "defaultRegistryUrlTemplate": "https://endoflife.date/api/alpine.json",
-      "format": "json"
+    "kubernetes": {
+      "defaultRegistryUrlTemplate": "https://cdn.dl.k8s.io/release/stable.txt",
+      "format": "plain"
     }
   }
 }
