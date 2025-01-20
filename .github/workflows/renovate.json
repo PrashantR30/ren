@@ -51,7 +51,7 @@
       ],
       "depNameTemplate": "alpine",
       "versioningTemplate": "semver-coerced",
-      "datasourceTemplate": "endoflife-date",
+      "datasourceTemplate": "custom.alpine",
       "packageNameTemplate": "alpine"
     }
   ],
@@ -60,7 +60,7 @@
       "defaultRegistryUrlTemplate": "https://cdn.dl.k8s.io/release/stable.txt",
       "format": "plain"
     },
-    "endoflife-date": {
+    "custom.alpine": {
       "defaultRegistryUrlTemplate": "https://endoflife.date/api/alpine.json",
       "format": "json",
       "jsonPath": "$[*].latest"
