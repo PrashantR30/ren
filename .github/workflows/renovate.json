@@ -50,7 +50,7 @@
          "alpine_version\\s*=\\s*(?<currentValue>\\S+)"
       ],
       "depNameTemplate": "alpine",
-      "versioningTemplate": "semver",
+      "versioningTemplate": "semver-coerced",
       "datasourceTemplate": "endoflife-date",
       "packageNameTemplate": "alpine"
     }
