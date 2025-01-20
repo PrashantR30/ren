@@ -1,56 +1,42 @@
-  {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",	
-    "onboarding": true,
-    "platform": "github",
-    "forkProcessing": "enabled",
-    "extends": [
-        "config:base",
-        "config:recommended"
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "onboarding": false,
+  "platform": "github",
+  "forkProcessing": "enabled",
+  "prConcurrentLimit": 20,
+  "prHourlyLimit": 20,
+  "dependencyDashboard": true,
+  "semanticCommits": "enabled",
+  "automerge": false,
+  "labels": ["dependencies"],
+  "extends": ["config:recommended"],
+  "separateMinorPatch": true,
+  "dockerfile": {
+    "enabled": false
+  },
+  "ignorePaths": [
+    "**/*",
+    "!embedded-bins/Makefile.variables"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "Makefile.variables"
       ],
-    "automerge": false,
-    "labels": ["dependencies"],
-    "dependencyDashboard": true,
-    "separateMinorPatch": true,
-    "prConcurrentLimit": 30,
-    "prHourlyLimit": 30,
-    "semanticCommits": "enabled",
-    "dockerfile": {
-      "enabled": false
-     },
-    "customManagers": [
-       {
-        "customType": "regex",
-        "fileMatch": ["Makefile.variables"],
-        "matchStrings": ["kubernetes_version\\s*=\\s*(?<currentValue>\\S+)"],
-        "depNameTemplate": "kubernetes",
-        "versioningTemplate": "semver-coerced",
-        "datasourceTemplate": "custom.kubernetes"
-       },
-       {
-        "customType": "regex",
-        "fileMatch": ["Makefile.variables"],
-        "matchStrings": ["helm_version\\s*=\\s*(?<currentValue>\\S+)"],
-        "depNameTemplate": "helm",
-        "versioningTemplate": "semver-coerced",
-        "datasourceTemplate": "custom.helm"
-       },
-       {
-        "customType": "regex",
-        "fileMatch": ["Makefile.variables"],
-        "matchStrings": ["go_version\\s*=\\s*(?<currentValue>\\S+)"],
-        "depNameTemplate": "golang",
-        "versioningTemplate": "semver-coerced",
-        "datasourceTemplate": "golang-version"
-       }
-     ],
-     "customDatasources": {
-      "kubernetes": {
-        "defaultRegistryUrlTemplate": "https://cdn.dl.k8s.io/release/stable.txt",
-        "format": "plain"
-      },
-      "helm": {
-        "defaultRegistryUrlTemplate": "https://get.helm.sh/helm-latest-version",
-        "format": "plain"
-      }
+      "matchStrings": ["alpine_version\\s*=\\s*(?<currentValue>\\S+)"],
+      "depNameTemplate": "alpine",
+      "versioningTemplate": "semver",
+      "datasourceTemplate": "alpine"
+    }
+  ],
+  "customDatasources": {
+    "alpine": {
+      "defaultRegistryUrlTemplate": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/latest-releases.yaml",
+      "format": "yaml",
+      "transformTemplates": [
+        "{\"releases\":[{\"version\": $$.[?(@.flavor == 'alpine-minirootfs')].version | [0],\"sourceUrl\":\"https://alpinelinux.org/\",\"changelogUrl\":\"https://alpinelinux.org/releases/\"}],\"sourceUrl\": \"https://alpinelinux.org/\",\"homepage\": \"https://alpinelinux.org/\"}"
+      ]
     }
   }
+}
