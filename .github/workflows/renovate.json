@@ -44,7 +44,7 @@
     {
       "customType": "regex",
       "fileMatch": [
-        "^embedded-bins/Makefile\\.variables$"
+        "Makefile.variables"
       ],
       "matchStrings": [
          "alpine_version\\s*=\\s*(?<currentValue>\\S+)"
@@ -62,7 +62,9 @@
     },
     "endoflife-date": {
       "defaultRegistryUrlTemplate": "https://endoflife.date/api/alpine.json",
-      "format": "json"
+      "format": "json",
+      "versionField": "latest",
+      "filterResults": true
     }
   }
 }
