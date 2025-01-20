@@ -8,6 +8,6 @@
       "port": 5432,
       "name": "myapp",
       "user": "admin",
-      "password": "secret"
+      "password": "secret1"
     }
   }
