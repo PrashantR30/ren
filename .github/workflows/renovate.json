@@ -1,0 +1,52 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "platform": "github",
+  "extends": [
+    "config:recommended",
+    "config:best-practices"
+  ],
+  "labels": [
+    "version_bump"
+  ],
+  "forkProcessing": "enabled",
+  "semanticCommits": "enabled",
+  "dependencyDashboard": true,
+  "automerge": false,
+  "separateMinorPatch": true,
+  "prConcurrentLimit": 20,
+  "prHourlyLimit": 20,
+  "excludeCommitPaths": [
+    "**/*"
+  ],
+  "includePaths": [
+    "embedded-bins/Makefile.variables"
+  ],
+  "ignorePaths": [
+    "**/*",
+    "!embedded-bins/Makefile.variables"
+  ],
+  "dockerfile": {
+    "enabled": false
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "Makefile.variables"
+      ],
+      "matchStrings": [
+        "alpine_version\\s*=\\s*(?<currentValue>\\S+)"
+      ],
+      "depNameTemplate": "alpine",
+      "versioningTemplate": "semver",
+      "datasourceTemplate": "endoflife-date",
+      "packageNameTemplate": "alpine"
+    }
+  ],
+  "customDatasources": {
+    "endoflife-date": {
+      "defaultRegistryUrlTemplate": "https://endoflife.date/api/alpine.json",
+      "format": "json"
+    }
+  }
+}
