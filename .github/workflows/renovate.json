@@ -1,0 +1,56 @@
+  {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",	
+    "onboarding": true,
+    "platform": "github",
+    "forkProcessing": "enabled",
+    "extends": [
+        "config:base",
+        "config:recommended"
+      ],
+    "automerge": false,
+    "labels": ["dependencies"],
+    "dependencyDashboard": true,
+    "separateMinorPatch": true,
+    "prConcurrentLimit": 30,
+    "prHourlyLimit": 30,
+    "semanticCommits": "enabled",
+    "dockerfile": {
+      "enabled": false
+     },
+    "customManagers": [
+       {
+        "customType": "regex",
+        "fileMatch": ["Makefile.variables"],
+        "matchStrings": ["kubernetes_version\\s*=\\s*(?<currentValue>\\S+)"],
+        "depNameTemplate": "kubernetes",
+        "versioningTemplate": "semver-coerced",
+        "datasourceTemplate": "custom.kubernetes"
+       },
+       {
+        "customType": "regex",
+        "fileMatch": ["Makefile.variables"],
+        "matchStrings": ["helm_version\\s*=\\s*(?<currentValue>\\S+)"],
+        "depNameTemplate": "helm",
+        "versioningTemplate": "semver-coerced",
+        "datasourceTemplate": "custom.helm"
+       },
+       {
+        "customType": "regex",
+        "fileMatch": ["Makefile.variables"],
+        "matchStrings": ["go_version\\s*=\\s*(?<currentValue>\\S+)"],
+        "depNameTemplate": "golang",
+        "versioningTemplate": "semver-coerced",
+        "datasourceTemplate": "golang-version"
+       }
+     ],
+     "customDatasources": {
+      "kubernetes": {
+        "defaultRegistryUrlTemplate": "https://cdn.dl.k8s.io/release/stable.txt",
+        "format": "plain"
+      },
+      "helm": {
+        "defaultRegistryUrlTemplate": "https://get.helm.sh/helm-latest-version",
+        "format": "plain"
+      }
+    }
+  }
