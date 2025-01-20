@@ -40,6 +40,18 @@
       "depNameTemplate": "kubernetes",
       "versioningTemplate": "semver-coerced",
       "datasourceTemplate": "custom.kubernetes"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^embedded-bins/Makefile\\.variables$"
+      ],
+      "matchStrings": [
+        "alpine_version\\s*=\\s*(?<currentValue>\\S+)"
+      ],
+      "depNameTemplate": "alpine",
+      "versioningTemplate": "semver",
+      "datasourceTemplate": "alpine"
     }
   ],
   "customDatasources": {
@@ -47,5 +59,12 @@
       "defaultRegistryUrlTemplate": "https://cdn.dl.k8s.io/release/stable.txt",
       "format": "plain"
     }
+  },
+  "alpine": {
+    "defaultRegistryUrlTemplate": "https://endoflife.date/api/alpine.json",
+    "format": "json",
+    "transformTemplates": [
+      "{\"releases\": [{\"version\": $$.[*].cycle}], \"sourceUrl\": \"https://endoflife.date/alpine\"}"
+    ]
   }
 }
