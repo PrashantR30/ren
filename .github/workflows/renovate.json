@@ -15,19 +15,15 @@
   "separateMinorPatch": true,
   "prConcurrentLimit": 20,
   "prHourlyLimit": 20,
+  "excludeCommitPaths": [
+    "**/*"
+  ],
   "includePaths": [
     "embedded-bins/Makefile.variables"
   ],
   "ignorePaths": [
     "**/*",
     "!embedded-bins/Makefile.variables"
-  ],
-  "packageRules": [
-    {
-      "matchFileNames": ["embedded-bins/Makefile.variables"],
-      "matchDepTypes": ["custom.regex"],
-      "enabled": true
-    }
   ],
   "dockerfile": {
     "enabled": false
@@ -39,7 +35,7 @@
         "^embedded-bins/Makefile\\.variables$"
       ],
       "matchStrings": [
-        "kubernetes_version\\s*=\\s*(?<currentValue>\\S+)"
+         "kubernetes_version\\s*=\\s*(?<currentValue>\\S+)"
       ],
       "depNameTemplate": "kubernetes",
       "versioningTemplate": "semver-coerced",
@@ -48,14 +44,14 @@
     {
       "customType": "regex",
       "fileMatch": [
-        "^embedded-bins/Makefile\\.variables$"
+        "Makefile.variables"
       ],
       "matchStrings": [
-        "alpine_version\\s*=\\s*(?<currentValue>\\S+)"
+         "alpine_version\\s*=\\s*(?<currentValue>\\S+)"
       ],
       "depNameTemplate": "alpine",
       "versioningTemplate": "semver-coerced",
-      "datasourceTemplate": "custom.endoflife-date",
+      "datasourceTemplate": "endoflife-date",
       "packageNameTemplate": "alpine"
     }
   ],
