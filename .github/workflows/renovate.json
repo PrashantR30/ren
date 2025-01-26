@@ -15,9 +15,6 @@
   "separateMinorPatch": true,
   "prConcurrentLimit": 20,
   "prHourlyLimit": 20,
-  "excludeCommitPaths": [
-    "**/*"
-  ],
   "includePaths": [
     "embedded-bins/Makefile.variables"
   ],
@@ -51,7 +48,7 @@
       ],
       "depNameTemplate": "alpine",
       "versioningTemplate": "semver-coerced",
-      "datasourceTemplate": "endoflife-date",
+      "datasourceTemplate": "custom.endoflife-date",
       "packageNameTemplate": "alpine"
     }
   ],
