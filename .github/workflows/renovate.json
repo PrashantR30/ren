@@ -48,7 +48,7 @@
       ],
       "depNameTemplate": "alpine",
       "versioningTemplate": "semver-coerced",
-      "datasourceTemplate": "custom.endoflife-date",
+      "datasourceTemplate": "endoflife-date",
       "packageNameTemplate": "alpine"
     }
   ],
