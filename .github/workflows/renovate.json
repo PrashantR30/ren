@@ -62,5 +62,17 @@
       "format": "json",
       "jsonPath": "$[*].latest"
     }
-  }
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "major"],
+      "enabled": true,
+      "addLabels": ["dependency_dashboard"]
+    },
+    {
+      "matchUpdateTypes": ["minor", "major"],
+      "automerge": false,
+      "dependencyDashboardApproval": true
+    }
+  ]
 }
